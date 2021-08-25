@@ -1,0 +1,38 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js --ignore __tests__",
+    "dbCreate": "npx sequelize db:create",
+    "dbMigrate": "npx sequelize db:migrate",
+    "postdbMigrate": "npx sequelize-cli db:seed:all",
+    "pretest": "NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize-cli db:seed:all",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
+  },
+  "keywords": [],
+  "author": "Lucas Andrade",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^2.21.2",
+    "bcrypt": "^4.0.1",
+    "celebrate": "^12.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.26.0",
+    "sequelize": "^5.21.7"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.3",
+    "prisma": "^2.21.2",
+    "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.2.0",
+    "supertest": "^4.0.2"
+  }
+}

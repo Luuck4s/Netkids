@@ -1,0 +1,8 @@
+<owl-carousel-o [options]="customOptions" >
+  <ng-container *ngFor="let slide of slidesStore">
+      <ng-template carouselSlide [id]="slide.id">
+        <img class="cursor-pointer object-cover px-2 max-w-lg max-h-80 shadow-md" [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+      </ng-template>
+  </ng-container>
+</owl-carousel-o>
+

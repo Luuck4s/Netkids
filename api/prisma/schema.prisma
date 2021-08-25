@@ -1,0 +1,60 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id            Int             @id @default(autoincrement())
+  name          String?
+  Film_Category Film_Category[]
+}
+
+model Film {
+  id            Int             @id @default(autoincrement())
+  name          String?
+  description   String?
+  image         String?
+  video         String?
+  duration      Int
+  Film_Category Film_Category[]
+  Avaliation    Avaliation[]
+}
+
+model Film_Category {
+  id         Int      @id @default(autoincrement())
+  film       Film     @relation(fields: [filmId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+  filmId     Int
+  categoryId Int
+}
+
+model Role {
+  id   Int     @id @default(autoincrement())
+  name String?
+  User User[]
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String?
+  email       String?      @unique
+  password    String?
+  image       String?
+  createdDate DateTime     @default(now()) @map("created")
+  role        Role?         @relation(fields: [roleId], references: [id])
+  roleId      Int
+  Avaliation  Avaliation[]
+}
+
+model Avaliation {
+  id     Int   @id @default(autoincrement())
+  user   User  @relation(fields: [userId], references: [id])
+  film   Film  @relation(fields: [filmId], references: [id])
+  stars  Float
+  userId Int
+  filmId Int
+}
