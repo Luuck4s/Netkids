@@ -7,6 +7,7 @@ import { ListagemConteudoComponent } from './home/listagem-conteudo/listagem-con
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {CarouselContent} from "./shared/components/carousel-content/coursel-content.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   imports: [
     BrowserAnimationsModule,
     CarouselModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
