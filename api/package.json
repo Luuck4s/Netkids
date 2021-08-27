@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server.js --ignore __tests__",
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/server.js",
     "dbCreate": "npx sequelize db:create",
     "dbMigrate": "npx sequelize db:migrate",
     "postdbMigrate": "npx sequelize-cli db:seed:all",
