@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.js --ignore __tests__",
-    "start": "node src/server.js",
+    "start": "nodemon src/server.js --ignore __tests__",
     "dbCreate": "npx sequelize db:create",
     "dbMigrate": "npx sequelize db:migrate",
     "postdbMigrate": "npx sequelize-cli db:seed:all",
     "pretest": "NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize-cli db:seed:all",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test dotenv -e .env.test jest",
     "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
   },
   "keywords": [],

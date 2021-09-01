@@ -1,6 +1,7 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgres"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -45,7 +46,7 @@ model User {
   password    String?
   image       String?
   createdDate DateTime     @default(now()) @map("created")
-  role        Role?         @relation(fields: [roleId], references: [id])
+  role        Role?        @relation(fields: [roleId], references: [id])
   roleId      Int
   Avaliation  Avaliation[]
 }
