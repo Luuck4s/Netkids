@@ -9,9 +9,7 @@
     "dbCreate": "npx sequelize db:create",
     "dbMigrate": "npx sequelize db:migrate",
     "postdbMigrate": "npx sequelize-cli db:seed:all",
-    "pretest": "NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize-cli db:seed:all",
-    "test": "NODE_ENV=test dotenv -e .env.test jest",
-    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
+    "test": "NODE_ENV=test jest --detectOpenHandles --forceExit --maxWorkers=3 --verbose"
   },
   "keywords": [],
   "author": "Lucas Andrade",
@@ -26,14 +24,14 @@
     "handlebars": "^4.7.6",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.26.0",
-    "sequelize": "^5.21.7"
+    "sequelize": "^5.21.7",
+    "supertest": "^6.1.6"
   },
   "devDependencies": {
     "jest": "^26.0.1",
     "nodemon": "^2.0.3",
     "prisma": "^2.21.2",
     "sequelize-cli": "^5.5.1",
-    "sqlite3": "^4.2.0",
-    "supertest": "^4.0.2"
+    "sqlite3": "^4.2.0"
   }
 }
