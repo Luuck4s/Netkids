@@ -1,5 +1,5 @@
 :root{
-    --vermelho:#E50914;
+    --vermelho:#dd0710;
     --preta:#141414;
 }
 
@@ -11,7 +11,7 @@
 
 /*elementos base*/
 body{
-   background: linear-gradient(rgba(0, 29, 17, 0.938),rgba(2, 150, 59, 0.938)100%);
+   background: black;
    font-family: 'Arial', Times, serif;
    color:white;
 }
@@ -46,11 +46,8 @@ header nav a:hover{
 /*filme principal*/
 .filme-principal{
     font-size:14px;
-    background: linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%),  url('src/assets/capa.jpg');
-
-    height:400px;
-    background-size:cover;
-
+    height: 70vh;
+    background-size: cover !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,13 +75,13 @@ header nav a:hover{
 }
 
 .botao{
-    background-color: rgba(0,0,0,.50);
+    background-color: var(--vermelho);
     border:none;
     color: white;
 
-    padding:15px 30px;
+    padding: 15px 30px;
     margin-right: 15px;
-    font-size: 12px;
+    font-size: 15px;
 
     cursor: pointer;
     transition: .3s ease all;

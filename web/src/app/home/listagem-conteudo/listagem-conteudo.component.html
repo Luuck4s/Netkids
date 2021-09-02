@@ -1,8 +1,7 @@
 <main>
-  <div class="filme-principal">
+  <div class="filme-principal" [ngStyle]="{ background: 'linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%), url(' + featuredfilm.image + ')'}">
     <div class="container">
-      <img class="logo-filme" src="img/filme.png" alt="Tom & Jerry - O filme">
-      <h3 class="titulo">Tom & Jerry: O Filme</h3>
+      <h3 class="titulo">{{featuredfilm.name}}</h3>
       <p class="descricao">Comédia | Família | Animação | <i class="far fa-clock"></i>1h23m</p>
       <p class="descricao">Um gato de rua chamado Tom é contratado por uma garota chamada Kayla, uma jovem empregada que
         trabalha em um hotel glamouroso em Nova York, para se livrar de Jerry, um rato travesso que se mudou para o
@@ -14,19 +13,19 @@
             ASSISTIR AGORA
           </button>
         </a>
-        <a href="https://pt.wikipedia.org/wiki/Tom_%26_Jerry_(filme_de_2021)">
-          <button role="button" class="botao">
-            <i class="fas fa-info-circle"></i>
-            MAIS INFORMAÇÕES
-          </button>
-        </a>
       </div>
     </div>
   </div>
 </main>
 
 
-<div class="carrosel-filmes pb-20">
+<div class="carrosel-filmes pb-10">
   <p class="text-4xl pl-2 md:my-4 my-8">Lançamentos</p>
   <app-carousel-content [content]="films"></app-carousel-content>
 </div>
+
+<div *ngFor="let category of categories" class="carrosel-filmes pb-20">
+  <p class="text-4xl pl-2 md:my-4 my-8">{{category.name}}</p>
+  <app-carousel-content [content]="category.films"></app-carousel-content>
+</div>
+
