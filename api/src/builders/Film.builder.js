@@ -1,5 +1,4 @@
 const Builder = require('./Builder');
-
 const CategoryBuilder = require("./Category.builder");
 
 class FilmBuilder extends Builder {
@@ -7,7 +6,6 @@ class FilmBuilder extends Builder {
     let requiredProps = [
       'id',
       'name',
-      'video',
       'image',
       'duration',
       'description',

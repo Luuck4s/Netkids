@@ -37,6 +37,29 @@ module.exports = {
       })
     }
 
+    if(filmData.categories && filmData.categories.length > 0){
+      try {
+
+        filmData.categories.map(async (category) => {
+          await prisma.film_Category.create({
+            data: {
+              filmId: film.id,
+              categoryId: Number(category)
+            }
+          })
+        })
+
+      } catch (error) {
+        console.log(error)
+
+        return new DefaultException({
+          title: "Erro na criação do filme",
+          details: HttpStatus.INTERNAL_ERROR_MESSAGE,
+          statusCode: HttpStatus.INTERNAL_ERROR_CODE
+        })
+      }
+    }
+
     let filmBuilder = new FilmBuilder(film).remove("categories");
 
     return filmBuilder.build();
@@ -103,5 +126,56 @@ module.exports = {
     })
 
     return films
+  },
+  async get({id}) {
+    let film = {}
+
+    try {
+      film = await prisma.film.findFirst({
+        where: {
+          id: Number(id)
+        },
+        include: {
+          Film_Category: {
+            include: {
+              category: true
+            }
+          },
+        },
+      })
+    } catch (error) {
+      console.log(error)
+
+      return new DefaultException({
+        title: "Erro na busca de filme",
+        details: HttpStatus.INTERNAL_ERROR_MESSAGE,
+        statusCode: HttpStatus.INTERNAL_ERROR_CODE
+      })
+    }
+
+    if(!film){
+      return new DefaultException({
+        title: "Filme não encontrado",
+        details: HttpStatus.NOT_FOUND_MESSAGE,
+        statusCode: HttpStatus.NOT_FOUND_CODE
+      })
+    }
+
+    let filmData = {
+      ...film,
+      categories: film.Film_Category
+    }
+
+    if (filmData.categories[0]) {
+      filmData.categories = filmData.categories.map(cat => {
+        return {
+          id: cat.category.id,
+          name: cat.category.name
+        }
+      })
+    }
+
+    let filmBuilder = new FilmBuilder(filmData);
+    return filmBuilder.build();
   }
 }

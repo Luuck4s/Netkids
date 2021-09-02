@@ -7,14 +7,16 @@ class FilmModel {
    * @param image
    * @param video
    * @param duration
+   * @param {categories[]} categories
    */
-  constructor({id = null, name = null, description = null, image = null, video = null, duration = null}) {
+  constructor({id = null, name = null, description = null, image = null, video = null, duration = null, categories= []}) {
     this._id = id
     this._name = name
     this._description = description
     this._image = image
     this._duration = duration
     this._video = video;
+    this.__categories = categories;
   }
 
   get id() {
@@ -63,6 +65,14 @@ class FilmModel {
 
   set duration(value) {
     this._duration = value;
+  }
+
+  get categories() {
+    return this.__categories;
+  }
+
+  set categories(value) {
+    this.__categories = value;
   }
 }
 
