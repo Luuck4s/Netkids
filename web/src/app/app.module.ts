@@ -12,6 +12,7 @@ import {AuthClientComponent} from "./auth/auth-client/auth-client.component";
 import {FormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {RegisterClientComponent} from "./auth/register-client/register-client.component";
+import {AuthAdminComponent} from "./auth/auth-admin/auth-admin.component";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {RegisterClientComponent} from "./auth/register-client/register-client.co
     ListagemConteudoComponent,
     CarouselContent,
     AuthClientComponent,
-    RegisterClientComponent
+    RegisterClientComponent,
+    AuthAdminComponent
   ],
   imports: [
     BrowserAnimationsModule,
