@@ -8,20 +8,26 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {CarouselContent} from "./shared/components/carousel-content/coursel-content.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import {AuthClientComponent} from "./auth/auth-client/auth-client.component";
+import {FormsModule} from "@angular/forms";
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListagemConteudoComponent,
-    CarouselContent
+    CarouselContent,
+    AuthClientComponent
   ],
   imports: [
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     CarouselModule,
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

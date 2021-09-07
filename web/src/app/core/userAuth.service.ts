@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from "rxjs";
 
 let url: String;
 
@@ -13,5 +14,11 @@ if(process.env.NODE_ENV == "development"){
   providedIn: 'root'
 })
 export class UserAuthService {
+  private baseUrl = url;
+
   constructor(private http: HttpClient) { }
+
+  login(data: Object): Observable<Object> {
+    return this.http.post<Object>(`${this.baseUrl}/user`, data)
+  }
 }
