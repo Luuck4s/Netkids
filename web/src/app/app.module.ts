@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthClientComponent} from "./auth/auth-client/auth-client.component";
 import {FormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
+import {RegisterClientComponent} from "./auth/register-client/register-client.component";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {ToastrModule} from "ngx-toastr";
     AppComponent,
     ListagemConteudoComponent,
     CarouselContent,
-    AuthClientComponent
+    AuthClientComponent,
+    RegisterClientComponent
   ],
   imports: [
     BrowserAnimationsModule,

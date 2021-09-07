@@ -7,14 +7,16 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-listagem-conteudo',
-  templateUrl: './auth-client.component.html',
-  styleUrls: ['./auth-client.component.css']
+  templateUrl: './register-client.component.html',
+  styleUrls: ['./register-client.component.css']
 })
-export class AuthClientComponent implements OnInit {
+export class RegisterClientComponent implements OnInit {
 
-  auth = {
+  register = {
+    name: "",
     email: "",
     password: "",
+    confirm_password: "",
   }
   loading: Boolean = false;
 
@@ -25,26 +27,37 @@ export class AuthClientComponent implements OnInit {
 
   onSubmit(){
 
-    if(!this.auth.email){
+    if(!this.register.name){
+      this.toastr.error('Preencha o nome', 'Ops, ocorreu um erro');
+      return;
+    }
+
+    if(!this.register.email){
       this.toastr.error('Preencha o email', 'Ops, ocorreu um erro');
       return;
     }
 
-    if(!this.auth.password){
+    if(!this.register.password){
       this.toastr.error('Preencha a senha', 'Ops, ocorreu um erro');
       return;
     }
 
+    if(this.register.confirm_password !== this.register.password){
+      this.toastr.error('As senhas não são iguais', 'Ops, ocorreu um erro');
+      return;
+    }
+
     this.loading = true;
-    this.makeLogin();
+    this.handleRegister()
   }
 
-  async makeLogin(){
+  async handleRegister(){
     const data = {
-      email: this.auth.email,
-      password: this.auth.password
+      name: this.register.name,
+      email: this.register.email,
+      password: this.register.password
     }
-    await this.userAuth.login(data).subscribe({
+    await this.userAuth.register(data).subscribe({
       next: (res: any) => {
         this.storage.lsSet('auth', res.token)
         this.loading = false;

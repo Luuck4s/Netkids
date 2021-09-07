@@ -1,25 +1,37 @@
 <div class="flex w-screen h-screen justify-center items-center" [ngStyle]="{ background: 'linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%), url(https://assets.nflxext.com/ffe/siteui/vlv3/5a27cb25-33a9-4bcc-b441-95fefabcbd37/a00b1fb9-c99b-4016-8d52-ba364c881a20/BR-pt-20210823-popsignuptwoweeks-perspective_alpha_website_small.jpg)'}">
   <form class="w-full max-w-lg px-20 py-24 bg-black opacity-80 rounded-sm" (ngSubmit)="onSubmit()">
     <div class="mb-12 -mt-10">
-      <h1 class="text-3xl font-bold">Entrar</h1>
+      <h1 class="text-3xl font-bold">Cadastro</h1>
     </div>
 
     <div class="space-y-6">
       <div>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <input placeholder="Email" type="text" name="email" class="w-full w-full p-3 rounded-sm bg-black focus:outline-none" required [(ngModel)]="auth.email" >
+          <input placeholder="Nome" type="text" name="name" class="w-full w-full p-3 rounded-sm bg-black focus:outline-none" required [(ngModel)]="register.name" >
         </div>
       </div>
 
       <div>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <input placeholder="Senha" type="password" name="password"  class="w-full w-full p-3 rounded-sm bg-black focus:outline-none" [(ngModel)]="auth.password" >
+          <input placeholder="Email" type="text" name="email" class="w-full w-full p-3 rounded-sm bg-black focus:outline-none" required [(ngModel)]="register.email" >
+        </div>
+      </div>
+
+      <div>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+          <input placeholder="Senha" type="password" name="password"  class="w-full w-full p-3 rounded-sm bg-black focus:outline-none" [(ngModel)]="register.password" >
+        </div>
+      </div>
+
+      <div>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+          <input placeholder="Repita a senha" type="password" name="confirm_password"  class="w-full w-full p-3 rounded-sm bg-black focus:outline-none" [(ngModel)]="register.confirm_password" >
         </div>
       </div>
     </div>
     <div class="w-full mt-10">
       <button [disabled]="loading" type="submit" class="inline-flex w-full items-center justify-center px-3 py-2 text-xl font-medium rounded-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none">
-        Entrar
+        Cadastrar
 
         <svg *ngIf="loading" class="animate-spin ml-3 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -29,7 +41,7 @@
       </button>
     </div>
     <div class="w-full mt-5">
-      Novo por aqui ? <a [routerLink]="['/auth/register']" class="font-bold cursor-pointer">Cadastre-se</a>
+      Já possui conta ? <a [routerLink]="['/auth']"  class="font-bold cursor-pointer">Entrar</a>
     </div>
   </form>
 </div>

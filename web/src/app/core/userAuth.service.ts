@@ -5,9 +5,9 @@ import {Observable} from "rxjs";
 let url: String;
 
 if(process.env.NODE_ENV == "development"){
-  url = 'http://localhost:3333/api/v1/auth';
+  url = 'http://localhost:3333/api/v1';
 }else {
-  url = 'https://api.netkids.gq/api/v1/auth';
+  url = 'https://api.netkids.gq/api/v1';
 }
 
 @Injectable({
@@ -19,6 +19,10 @@ export class UserAuthService {
   constructor(private http: HttpClient) { }
 
   login(data: Object): Observable<Object> {
-    return this.http.post<Object>(`${this.baseUrl}/user`, data)
+    return this.http.post<Object>(`${this.baseUrl}/auth/user`, data)
+  }
+
+  register(data: Object): Observable<Object> {
+    return this.http.post<Object>(`${this.baseUrl}/user/register`, data)
   }
 }
