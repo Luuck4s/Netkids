@@ -1,7 +1,7 @@
 export class Film {
   id!: string
   name!: String
-  video!: String
+  video!: string
   image!: String
   duration!: Number
   description!: String

@@ -3,6 +3,7 @@ import {FilmService} from "../../core/film.service";
 import {Film} from "../../shared/models/Film";
 import {Category} from "../../shared/models/Category";
 import {CategoryService} from "../../core/category.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-listagem-conteudo',
@@ -15,7 +16,7 @@ export class ListagemConteudoComponent implements OnInit {
   categories: Category[] = []
   featuredfilm: Film = new Film()
 
-  constructor(private filmService: FilmService, private categoryService: CategoryService) { }
+  constructor(private filmService: FilmService, private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit(): void {
     this.filmService.list().subscribe({
@@ -30,6 +31,11 @@ export class ListagemConteudoComponent implements OnInit {
         this.categories = categories.filter(cat => cat.films?.length > 0);
       }
     })
+  }
+
+  goToFilm(film: Film): void{
+    console.log(this.films)
+    // router.navigate(['/auth'])
   }
 
 }

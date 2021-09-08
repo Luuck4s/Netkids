@@ -1,7 +1,7 @@
 <owl-carousel-o [options]="customOptions" >
   <ng-container *ngFor="let content of content">
       <ng-template carouselSlide [id]="content.id">
-        <img class="cursor-pointer object-cover px-2 shadow-md" [src]="content.image" [alt]="content.name" [title]="content.name">
+        <img (click)="goToFilm(content)" class="cursor-pointer object-cover px-2 shadow-md" [src]="content.image" [alt]="content.name" [title]="content.name">
       </ng-template>
   </ng-container>
 </owl-carousel-o>

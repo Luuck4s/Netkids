@@ -175,7 +175,7 @@ module.exports = {
       })
     }
 
-    let filmBuilder = new FilmBuilder(filmData);
+    let filmBuilder = new FilmBuilder(filmData).add(['video']);
     return filmBuilder.build();
   }
 }

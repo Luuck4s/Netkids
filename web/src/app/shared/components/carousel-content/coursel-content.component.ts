@@ -1,6 +1,7 @@
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {Component, Input} from '@angular/core';
 import {Film} from "../../models/Film";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -8,6 +9,10 @@ import {Film} from "../../models/Film";
   templateUrl: './carousel-content.component.html',
 })
 export class CarouselContent {
+
+  constructor(private router:Router) {
+  }
+
   customOptions: OwlOptions = {
     mouseDrag: true,
     touchDrag: true,
@@ -33,4 +38,8 @@ export class CarouselContent {
 
   @Input()
   content: Film[] = [];
+
+  goToFilm(film: Film){
+    this.router.navigate(['/film', film.id, film.name])
+  }
 }
