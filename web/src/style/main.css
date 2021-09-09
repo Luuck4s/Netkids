@@ -43,6 +43,14 @@ header nav a:hover{
     color:#fff;
 }
 
+#navbar{
+  transition: background 0.5s;
+}
+
+.navbar-inverse{
+  background: var(--preta);
+}
+
 /*filme principal*/
 .filme-principal{
     font-size:14px;

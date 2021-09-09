@@ -49,7 +49,6 @@ export class VisualizarConteudoComponent implements OnInit {
         };
       },
       error: (error) => {
-        this.toastr.error(error.error.title, 'Ops, ocorreu um erro');
         this.router.navigate(['/auth'],  { replaceUrl: true })
       }
     })

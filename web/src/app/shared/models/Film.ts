@@ -5,6 +5,7 @@ export class Film {
   image!: String
   duration!: Number
   description!: String
+  categoriesString?: any
   categories!: [
     {
       id: Number,

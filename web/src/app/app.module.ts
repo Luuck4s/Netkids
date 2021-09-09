@@ -15,6 +15,7 @@ import {RegisterClientComponent} from "./auth/register-client/register-client.co
 import {AuthAdminComponent} from "./auth/auth-admin/auth-admin.component";
 import {VisualizarConteudoComponent} from "./film/visualizar-conteudo/visualizar-conteudo.component";
 import {YouTubePlayerModule} from "@angular/youtube-player";
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {YouTubePlayerModule} from "@angular/youtube-player";
     CarouselContent,
     AuthClientComponent,
     RegisterClientComponent,
-    AuthAdminComponent
+    AuthAdminComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserAnimationsModule,

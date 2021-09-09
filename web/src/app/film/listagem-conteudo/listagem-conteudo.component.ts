@@ -23,6 +23,7 @@ export class ListagemConteudoComponent implements OnInit {
       next: (films) => {
         this.films = films;
         this.featuredfilm = this.films[0]
+        this.featuredfilm.categoriesString = this.featuredfilm.categories.map(cat => cat.name).join(" |")
       }
     })
 
