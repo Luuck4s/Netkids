@@ -1,9 +1,8 @@
 export class Film {
   id!: string
-  name!: String
+  name!: string
   video!: string
   image!: String
-  duration!: Number
   description!: String
   categoriesString?: any
   categories!: [
@@ -12,4 +11,5 @@ export class Film {
       name: String
     }
   ]
+  catForm: any
 }

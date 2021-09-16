@@ -6,9 +6,10 @@ const Film = require("../models/Film.model");
 
 module.exports = {
   async create(req, res){
-    let {name , description, duration, video, image, categories} = req.body;
+    let {name , description, video, image, categories} = req.body;
+    image = image || ""
 
-    let filmData = new Film({name, description, duration,video, image, categories});
+    let filmData = new Film({name, description, video, image, categories});
 
     let film = await FilmService.create(filmData);
 
@@ -47,5 +48,30 @@ module.exports = {
     }
 
     return res.status(HttpStatus.OK_CODE).json(film)
-  }
+  },
+  async delete(req, res){
+    let {id} = req.params;
+
+    let film = await FilmService.delete({id});
+
+    if(film instanceof  DefaultException){
+      return res.status(film.status).json(film);
+    }
+
+    return res.status(HttpStatus.OK_CODE).send()
+  },
+  async update(req, res){
+    let {name , description, video, image, categories} = req.body;
+    let {id} = req.params;
+
+    let filmData = new Film({name, description, video, image, categories});
+
+    let film = await FilmService.update({id, filmData});
+
+    if(film instanceof  DefaultException){
+      return res.status(film.status).json(film);
+    }
+
+    return res.status(HttpStatus.OK_CODE).json(film)
+  },
 }

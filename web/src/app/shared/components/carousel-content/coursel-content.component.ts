@@ -2,6 +2,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import {Component, Input} from '@angular/core';
 import {Film} from "../../models/Film";
 import {Router} from "@angular/router";
+import {Utils} from "../../functions/Utils";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class CarouselContent {
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private utils:Utils) {
   }
 
   customOptions: OwlOptions = {
@@ -40,6 +41,6 @@ export class CarouselContent {
   content: Film[] = [];
 
   goToFilm(film: Film){
-    this.router.navigate(['/film', film.id, film.name])
+    this.router.navigate(['/film', film.id, this.utils.cleanString(film.name)])
   }
 }

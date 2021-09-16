@@ -2,19 +2,21 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {LocalStorage} from "../../functions/LocalStorage";
 import {NavigationEnd, Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
+import {UserRole} from "../../models/UserRole";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-
 export class NavbarComponent implements OnInit {
 
   menuOpen: Boolean = false;
   isLogged: Boolean = false;
   pagesWithoutLoginButton: String[] = ['/auth', '/admin/auth']
   showButtonLogin: Boolean = true;
+  isAdmin: Boolean = false;
+
   user: any = {
     image: null
   }
@@ -38,6 +40,10 @@ export class NavbarComponent implements OnInit {
     this.showButtonLogin = !this.pagesWithoutLoginButton.includes(page)
   }
 
+  verifyIsAdmin(): void {
+    this.isAdmin = this.user.role === UserRole.admin();
+  }
+
   getInfoClient(): void {
     let token = this.storage.lsGet('auth')
     if(token){
@@ -46,6 +52,7 @@ export class NavbarComponent implements OnInit {
         user = JSON.parse(user.sub)
         this.user = user
         this.isLogged = true;
+        this.verifyIsAdmin();
       }catch{
         console.log("Error")
       }

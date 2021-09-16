@@ -131,6 +131,23 @@ header nav a:hover{
     font-size: 16px;
 }
 
+.multi-select-app{
+  color: black;
+}
+
+.multi-select-app .dropdown-list{
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+.multi-select-app .arrow-2 {
+  display: none !important;
+}
+
+.multi-select-app .arrow-down {
+  display: none !important;
+}
+
 
 
 

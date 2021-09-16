@@ -7,7 +7,6 @@ class FilmBuilder extends Builder {
       'id',
       'name',
       'image',
-      'duration',
       'description',
       'categories'
     ]

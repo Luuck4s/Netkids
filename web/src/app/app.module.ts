@@ -16,6 +16,10 @@ import {AuthAdminComponent} from "./auth/auth-admin/auth-admin.component";
 import {VisualizarConteudoComponent} from "./film/visualizar-conteudo/visualizar-conteudo.component";
 import {YouTubePlayerModule} from "@angular/youtube-player";
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { CriarConteudoComponent } from './film/criar-conteudo/criar-conteudo.component';
+import { TabelaConteudoComponent } from './film/tabela-conteudo/tabela-conteudo.component';
+import { EditarConteudoComponent } from './film/editar-conteudo/editar-conteudo.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 
 @NgModule({
@@ -24,10 +28,14 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     ListagemConteudoComponent,
     VisualizarConteudoComponent,
     CarouselContent,
+
     AuthClientComponent,
     RegisterClientComponent,
     AuthAdminComponent,
-    NavbarComponent
+    NavbarComponent,
+    CriarConteudoComponent,
+    TabelaConteudoComponent,
+    EditarConteudoComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -37,7 +45,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    AngularMultiSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

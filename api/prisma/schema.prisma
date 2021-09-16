@@ -20,7 +20,6 @@ model Film {
   description   String?
   image         String?
   video         String?
-  duration      Int
   Film_Category Film_Category[]
   Avaliation    Avaliation[]
 }
