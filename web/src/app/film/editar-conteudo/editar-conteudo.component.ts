@@ -16,6 +16,7 @@ export class EditarConteudoComponent implements OnInit {
   film!: Film;
   categories: any = [];
   dropdownSettings: any = {};
+  loading: Boolean = false;
 
   constructor(private route: ActivatedRoute, private toastr: ToastrService, private filmService: FilmService, private router: Router, private categoryService: CategoryService) {
   }
@@ -81,12 +82,14 @@ export class EditarConteudoComponent implements OnInit {
   }
 
   updateContent() {
+    this.loading = true;
     let data = {
       ...this.film,
       categories: this.film.catForm
     }
     this.filmService.update(this.id, data).subscribe({
       next: (data) => {
+        this.loading = false;
         this.toastr.success('Conteúdo atualizado com sucesso', 'Sucesso');
         this.router.navigate(['/admin/content'])
       }

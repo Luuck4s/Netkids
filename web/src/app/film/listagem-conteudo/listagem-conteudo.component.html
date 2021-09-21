@@ -5,12 +5,12 @@
       <p class="descricao"> {{featuredfilm.categoriesString}}
       <p class="descricao">{{featuredfilm.description}}</p>
       <div class="botoes">
-        <a href="https://www.youtube.com/watch?v=Jg-ls07nixc">
-          <button role="button" class="botao">
+
+          <button role="button" class="botao" (click)="goToFilm(featuredfilm)">
             <i class="fas fa-play"></i>
             ASSISTIR AGORA
           </button>
-        </a>
+
       </div>
     </div>
   </div>

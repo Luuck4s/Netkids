@@ -7,8 +7,8 @@ import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-listagem-conteudo',
-  templateUrl: './listagem-conteudo.component.html',
-  styleUrls: ['./listagem-conteudo.component.css']
+  templateUrl: './visualizar-conteudo.component.html',
+  styleUrls: ['./visualizar-conteudo.component.css']
 })
 export class VisualizarConteudoComponent implements OnInit {
 
@@ -24,13 +24,9 @@ export class VisualizarConteudoComponent implements OnInit {
   }
 
   getSizes(): void{
-    let body = document.body,
-      html = document.documentElement;
+    let height = window.screen.height - 150;
+    let width = window.screen.width - 100;
 
-    let height = Math.max( body.scrollHeight, body.offsetHeight,
-      html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-    let width = Math.max(body.offsetWidth);
     this.height = height;
     this.width = width;
   }

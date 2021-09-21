@@ -13,6 +13,7 @@ import {Router} from "@angular/router";
 export class TabelaConteudoComponent implements OnInit {
 
   films: Film[] = []
+  deleting: any[] = [];
 
   constructor(private filmService: FilmService, private toastr: ToastrService, private router: Router, private utils: Utils) {
   }
@@ -30,9 +31,11 @@ export class TabelaConteudoComponent implements OnInit {
   }
 
   deleteContent(id: any) {
+    this.deleting.push(id);
     this.filmService.delete(id).subscribe({
       next: (res) => {
         this.toastr.success('Conteúdo deletado com sucesso', 'Sucesso');
+        this.deleting = this.deleting.filter(idF => idF !== id);
         this.getFilms();
       }
     })

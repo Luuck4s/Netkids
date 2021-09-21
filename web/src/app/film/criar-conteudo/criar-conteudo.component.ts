@@ -15,6 +15,7 @@ export class CriarConteudoComponent implements OnInit {
   film!: Film;
   categories: any = [];
   dropdownSettings: any = {};
+  loading: Boolean = false;
 
   constructor(private toastr: ToastrService, private filmService: FilmService, private router: Router, private categoryService: CategoryService) { }
 
@@ -53,13 +54,17 @@ export class CriarConteudoComponent implements OnInit {
       return;
     }
 
-    this.film.catForm = this.film.catForm.map((item: any) => item.id);
+    if(this.film.catForm){
+      this.film.catForm = this.film.catForm.map((item: any) => item.id);
+    }
 
     this.createContent();
+
 
   }
 
   createContent(){
+    this.loading = true;
     let data = {
       ...this.film,
       categories: this.film.catForm
@@ -68,6 +73,7 @@ export class CriarConteudoComponent implements OnInit {
       next: (data) => {
         this.toastr.success( 'Conteúdo criado com sucesso','Sucesso');
         this.router.navigate(['/admin/content'])
+        this.loading = false;
       }
     })
   }

@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {LocalStorage} from "../../functions/LocalStorage";
-import {NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
 import {UserRole} from "../../models/UserRole";
 
@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   pagesWithoutLoginButton: String[] = ['/auth', '/admin/auth']
   showButtonLogin: Boolean = true;
   isAdmin: Boolean = false;
+  showNavbar: Boolean = true;
 
   user: any = {
     image: null
@@ -26,19 +27,28 @@ export class NavbarComponent implements OnInit {
       if (ev instanceof NavigationEnd) {
         this.verifyIfShowButton();
         this.getInfoClient();
+        this.verifyIfshowNavbar()
       }
     });
   }
 
   ngOnInit(): void {
-
     this.verifyIsLogged()
   }
 
   verifyIfShowButton(): void {
     let page = window.location.pathname
+
     this.showButtonLogin = !this.pagesWithoutLoginButton.includes(page)
   }
+
+  verifyIfshowNavbar(): void {
+    let page = window.location.pathname
+    let regex = /\/film\/\w\/\w+/g
+
+    this.showNavbar = !regex.test(page)
+  }
+
 
   verifyIsAdmin(): void {
     this.isAdmin = this.user.role === UserRole.admin();
@@ -76,6 +86,10 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
+    if(!this.showNavbar){
+      return;
+    }
+
     let element = document.querySelector('#navbar') as HTMLElement;
     if (window.pageYOffset > element.clientHeight) {
       element.classList.add('navbar-inverse');
