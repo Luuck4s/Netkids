@@ -43,4 +43,27 @@ export class CarouselContent {
   goToFilm(film: Film){
     this.router.navigate(['/film', film.id, this.utils.cleanString(film.name)])
   }
+
+  createRange(number: number){
+    return Array.from(Array(number).keys());
+  }
+
+        
+  getStars(number: number){
+    const stars: any = [];
+
+    let limit = Math.floor(number);
+    
+
+    for(let i = 0; i < limit; i++){
+      stars.push(`<i class="fa fa-star"></i>`)
+    }
+
+    if(number % 1 != 0){
+      stars.push(`<i class="fa fa-star-half"></i>`)
+    }
+    
+    return stars.join(" ");
+  }
+
 }

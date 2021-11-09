@@ -4,6 +4,7 @@ import {Film} from "../../shared/models/Film";
 import {CategoryService} from "../../core/category.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import { AvaliationService } from 'src/app/core/avaliation.service';
 
 @Component({
   selector: 'app-listagem-conteudo',
@@ -15,8 +16,9 @@ export class VisualizarConteudoComponent implements OnInit {
   film: Film = new Film();
   height: number = 0;
   width: number = 0;
+  stars: number = 0;
 
-  constructor(private filmService: FilmService, private toastr: ToastrService, private categoryService: CategoryService, private router:Router, private route: ActivatedRoute) { }
+  constructor(private filmService: FilmService, private toastr: ToastrService, private categoryService: CategoryService, private router:Router, private route: ActivatedRoute, private avaliationService: AvaliationService) { }
 
   ngOnInit(): void {
     this.getSizes();
@@ -38,6 +40,7 @@ export class VisualizarConteudoComponent implements OnInit {
       next: (res: Film) => {
         let positionOfCode = res.video.lastIndexOf('v=');
         let code = res.video.substring(positionOfCode + 2);
+        this.stars = res.avaliation || 0;
 
         this.film = {
           ...res,
@@ -50,4 +53,22 @@ export class VisualizarConteudoComponent implements OnInit {
     })
 
   }
+
+  avaliate(stars: number){
+    const data = {
+      "filmId": this.film.id,
+	    "stars": stars
+    };
+
+   this.avaliationService.createOrUpdate(data).subscribe({
+     next: (res) => {
+        console.log(res);
+        this.stars = stars;
+     },
+     error: (error) => {
+       console.log(error);
+     }
+   })
+  }
+
 }

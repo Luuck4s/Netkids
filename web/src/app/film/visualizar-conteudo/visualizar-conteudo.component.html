@@ -1,4 +1,25 @@
 <div class=" w-screen h-screen xs:p-2 flex justify-center items-center">
+  <div class="absolute bottom-5 left-5 p-5 bg-black">
+    <i class="fa fa-star text-3xl cursor-pointer" 
+    [ngClass]="[stars >= 1 ? 'text-red-600' : '']" 
+    title="1 Estrela" 
+    (click)="avaliate(1)"></i>
+    &nbsp;
+    <i class="fa fa-star text-3xl cursor-pointer" title="2 Estrelas" (click)="avaliate(2)"
+    [ngClass]="[stars >= 2 ? 'text-red-600' : '']" ></i>
+    &nbsp;
+    <i class="fa fa-star text-3xl cursor-pointer" title="3 Estrelas" (click)="avaliate(3)"
+    [ngClass]="[stars >= 3 ? 'text-red-600' : '']"></i>
+    &nbsp;
+    <i class="fa fa-star text-3xl cursor-pointer" title="4 Estrelas" (click)="avaliate(4)"
+    [ngClass]="[stars >= 4 ? 'text-red-600' : '']"></i>
+    &nbsp;
+    <i class="fa fa-star text-3xl cursor-pointer" title="5 Estrelas" (click)="avaliate(5)"
+    [ngClass]="[stars >= 5 ? 'text-red-600' : '']"></i>
+  </div>
+  <div class="absolute top-5 left-5 p-5 bg-black">
+    <i class="fa fa-arrow-left text-3xl text-red-600 cursor-pointer" title="Voltar" [routerLink]="['/']"></i>
+  </div>
   <youtube-player [height]="height" [width]="width"  [videoId]="film.video"></youtube-player>
 </div>
 

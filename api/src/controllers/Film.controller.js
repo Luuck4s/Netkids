@@ -1,7 +1,7 @@
 const FilmService = require("../services/Film.service");
 const DefaultException = require("../exceptions/Default.expection");
 const HttpStatus = require("../httpStatus/http.status");
-
+const {decode} = require("jsonwebtoken");
 const Film = require("../models/Film.model");
 
 module.exports = {
@@ -40,12 +40,15 @@ module.exports = {
   },
   async get(req, res){
    let {id} = req.params;
+   let token = req.headers.authorization;
+   let user = decode(token);
+   user = JSON.parse(user.sub);
 
-    let film = await FilmService.get({id});
+  let film = await FilmService.get({id, idUser: user.id});
 
-    if(film instanceof  DefaultException){
-      return res.status(film.status).json(film);
-    }
+  if(film instanceof  DefaultException){
+    return res.status(film.status).json(film);
+  }
 
     return res.status(HttpStatus.OK_CODE).json(film)
   },

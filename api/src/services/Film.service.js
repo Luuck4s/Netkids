@@ -144,7 +144,7 @@ module.exports = {
         return films
     },
 
-    async get({id}) {
+    async get({id, idUser = null}) {
         let film = {}
 
         try {
@@ -158,9 +158,18 @@ module.exports = {
                             category: true
                         }
                     },
-                    Avaliation: true
+                  
                 },
-            })
+            });
+
+            avaliation = await prisma.avaliation.findFirst({
+                where: {
+                    filmId: Number(film.id),
+                    userId: Number(idUser)
+                }
+            });
+
+            film.Avaliation = avaliation ? avaliation.stars : 0;
         } catch (error) {
             console.log(error)
 
@@ -179,16 +188,10 @@ module.exports = {
             })
         }
 
-        let filmAvaliation = film.Avaliation.reduce((prev, actual) => {
-            return prev + actual.stars;
-        }, 0);
-
-        filmAvaliation = filmAvaliation > 0 ? filmAvaliation / film.Avaliation.length : filmAvaliation;
-
         let filmData = {
             ...film,
             categories: film.Film_Category,
-            avaliation: filmAvaliation
+            avaliation: film.Avaliation
         }
 
         if (filmData.categories[0]) {

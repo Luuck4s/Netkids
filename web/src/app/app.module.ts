@@ -53,6 +53,7 @@ import { EditarCategoriaComponent } from './categories/editar-categoria/editar-c
     FormsModule,
     YouTubePlayerModule,
     AngularMultiSelectModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

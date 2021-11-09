@@ -12,4 +12,5 @@ export class Film {
     }
   ]
   catForm: any
+  avaliation?: number
 }
