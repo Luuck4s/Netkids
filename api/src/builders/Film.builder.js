@@ -8,7 +8,8 @@ class FilmBuilder extends Builder {
       'name',
       'image',
       'description',
-      'categories'
+      'categories',
+      'avaliation'
     ]
 
     super({ model, requiredProps })

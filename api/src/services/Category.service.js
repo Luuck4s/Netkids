@@ -40,6 +40,67 @@ module.exports = {
 
     return new CategoryBuilder(data).build();
   },
+  async update({ id ,name}) {
+    let category = await prisma.category.findFirst({
+      where: {
+        name: name,
+        NOT: {
+          id: Number(id)
+        }
+      }
+    });
+
+    if (category) {
+      return new DefaultException({
+        title: "Categoria já existente",
+        details: HttpStatus.FORBIDDEN_MESSAGE,
+        statusCode: HttpStatus.FORBIDDEN_CODE
+      })
+    }
+
+    await prisma.category.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        name: name
+      }
+    })
+
+    category = await prisma.category.findFirst({
+      where: {
+        id: Number(id)
+      }
+    });
+
+
+    let data = {
+      ...category
+    }
+
+    return new CategoryBuilder(data).build();
+  },
+  async delete({ id }) {
+    let categoryHasFilms = await prisma.film_Category.findFirst({
+      where: {
+        categoryId: Number(id)
+      }
+    });
+
+    if (categoryHasFilms) {
+      return new DefaultException({
+        title: "Categoria tem filmes associados",
+        details: HttpStatus.FORBIDDEN_MESSAGE,
+        statusCode: HttpStatus.FORBIDDEN_CODE
+      })
+    }
+
+    return await prisma.category.delete({
+      where: {
+        id: Number(id),
+      },
+    })
+  },
   async list(){
     let categories = []
 
@@ -79,5 +140,26 @@ module.exports = {
     })
 
     return categories
-  }
+  },
+  async get({ id }) {
+    let category = await prisma.category.findFirst({
+      where: {
+        id: Number(id)
+      }
+    });
+
+    if (!category) {
+      return new DefaultException({
+        title: "Categoria não existente",
+        details: HttpStatus.FORBIDDEN_MESSAGE,
+        statusCode: HttpStatus.FORBIDDEN_CODE
+      })
+    }
+
+    let data = {
+      ...category
+    }
+
+    return new CategoryBuilder(data).build();
+  },
 }

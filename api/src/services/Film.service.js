@@ -91,6 +91,7 @@ module.exports = {
                             category: true
                         }
                     },
+                    Avaliation: true
                 },
                 orderBy: [
                     {
@@ -113,9 +114,17 @@ module.exports = {
 
 
         films = films.map(film => {
+
+            let filmAvaliation = film.Avaliation.reduce((prev, actual) => {
+                return prev + actual.stars;
+            }, 0);
+
+            filmAvaliation = filmAvaliation > 0 ? filmAvaliation / film.Avaliation.length : filmAvaliation;
+
             let filmData = {
                 ...film,
-                categories: film.Film_Category
+                categories: film.Film_Category,
+                avaliation: filmAvaliation
             }
 
             if (filmData.categories[0]) {
@@ -126,6 +135,7 @@ module.exports = {
                     }
                 })
             }
+
 
             let filmBuilder = new FilmBuilder(filmData);
             return filmBuilder.build();
@@ -148,6 +158,7 @@ module.exports = {
                             category: true
                         }
                     },
+                    Avaliation: true
                 },
             })
         } catch (error) {
@@ -168,9 +179,16 @@ module.exports = {
             })
         }
 
+        let filmAvaliation = film.Avaliation.reduce((prev, actual) => {
+            return prev + actual.stars;
+        }, 0);
+
+        filmAvaliation = filmAvaliation > 0 ? filmAvaliation / film.Avaliation.length : filmAvaliation;
+
         let filmData = {
             ...film,
-            categories: film.Film_Category
+            categories: film.Film_Category,
+            avaliation: filmAvaliation
         }
 
         if (filmData.categories[0]) {
