@@ -20,6 +20,9 @@ import { CriarConteudoComponent } from './film/criar-conteudo/criar-conteudo.com
 import { TabelaConteudoComponent } from './film/tabela-conteudo/tabela-conteudo.component';
 import { EditarConteudoComponent } from './film/editar-conteudo/editar-conteudo.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { TabelaCategoriaComponent } from './categories/tabela-categoria/tabela-categoria.component';
+import { CriarCategoriaComponent } from './categories/criar-categoria/criar-categoria.component';
+import { EditarCategoriaComponent } from './categories/editar-categoria/editar-categoria.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     CriarConteudoComponent,
     TabelaConteudoComponent,
     EditarConteudoComponent,
+    TabelaCategoriaComponent,
+    CriarCategoriaComponent,
+    EditarCategoriaComponent
   ],
   imports: [
     BrowserAnimationsModule,

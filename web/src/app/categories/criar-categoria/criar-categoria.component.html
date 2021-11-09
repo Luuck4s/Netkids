@@ -1,0 +1,32 @@
+<main class="mt-16 md:mt-0">
+  <div class="w-full overflow-hidden px-20 my-20">
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <form (ngSubmit)="onSubmit()" class="max-w-6xl mx-auto">
+        <div class="shadow sm:rounded-md sm:overflow-hidden">
+          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <label for="title" class="block text-sm font-medium text-gray-700">
+                  Nome
+                </label>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <input required [(ngModel)]="category.name" type="text" name="title" id="title" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 text-black">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <button [disabled]="loading" type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Salvar
+
+              <svg *ngIf="loading" class="animate-spin ml-3 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

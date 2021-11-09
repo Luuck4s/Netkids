@@ -21,6 +21,11 @@ export class AuthClientComponent implements OnInit {
   constructor(private userAuth: UserAuthService, private toastr: ToastrService, private storage:LocalStorage, private router: Router) { }
 
   ngOnInit(): void {
+    const userLogged = localStorage.getItem("auth");
+
+    if(userLogged != null){
+      this.goToHome();
+    }
   }
 
   onSubmit(){

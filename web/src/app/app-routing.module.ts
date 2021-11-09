@@ -9,6 +9,9 @@ import {VisualizarConteudoComponent} from "./film/visualizar-conteudo/visualizar
 import {TabelaConteudoComponent} from "./film/tabela-conteudo/tabela-conteudo.component";
 import {CriarConteudoComponent} from "./film/criar-conteudo/criar-conteudo.component";
 import {EditarConteudoComponent} from "./film/editar-conteudo/editar-conteudo.component";
+import { TabelaCategoriaComponent } from './categories/tabela-categoria/tabela-categoria.component';
+import { CriarCategoriaComponent } from './categories/criar-categoria/criar-categoria.component';
+import { EditarCategoriaComponent } from './categories/editar-categoria/editar-categoria.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: ListagemConteudoComponent },
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'admin/content', pathMatch: 'full', component: TabelaConteudoComponent },
   { path: 'admin/content/create', pathMatch: 'full', component: CriarConteudoComponent },
   { path: 'admin/content/edit/:id/:name', pathMatch: 'full', component: EditarConteudoComponent },
+  { path: 'admin/categories', pathMatch: 'full', component: TabelaCategoriaComponent },
+  { path: 'admin/categories/create', pathMatch: 'full', component: CriarCategoriaComponent },
+  { path: 'admin/categories/edit/:id/:name', pathMatch: 'full', component: EditarCategoriaComponent },
 ];
 
 @NgModule({
